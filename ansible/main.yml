@@ -1,0 +1,15 @@
+---
+- hosts: all
+  user: ubuntu
+  sudo: true
+  sudo_user: root
+  vars:
+    basedir: "."
+  vars_files:
+  - vars/all.yml
+  roles:
+  - tools
+  - basex
+  - web
+  tasks:
+

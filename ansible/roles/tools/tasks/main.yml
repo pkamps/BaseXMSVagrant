@@ -1,0 +1,8 @@
+---
+
+- name: apt-get update
+  action: apt update-cache=yes
+
+- name: install atop
+  apt: pkg='atop' state=latest
+

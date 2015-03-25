@@ -1,0 +1,7 @@
+---
+
+- name: install basex
+  apt: pkg='basex' state=latest
+
+- name: create basex user
+  user: name=basex group=basex

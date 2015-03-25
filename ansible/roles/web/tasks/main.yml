@@ -1,0 +1,48 @@
+---
+
+- name: apt-get update
+  action: apt update-cache=yes
+
+# Install all required packages
+- name: install php5 and apache
+  apt: pkg='php5' state=latest
+
+- name: install php5-xslt
+  apt: pkg='php5-xsl' state=latest
+
+- name: install php5-apc
+  apt: pkg='php-apc' state=latest
+  
+- name: install php5-intl
+  apt: pkg='php5-intl' state=latest
+
+- name: install php5-curl
+  apt: pkg='php5-curl' state=latest
+
+- name: install php5-pspell
+  apt: pkg='php5-pspell' state=latest
+
+- name: install phpunit
+  apt: pkg='phpunit' state=latest
+
+# Write config files
+- name: write php.ini config file
+  template: src=php.ini dest=/etc/php5/apache2/php.ini owner=root mode=0644
+  tags: config
+
+# Configure apache
+- name: Enable rewrite module in apache
+  file: src=/etc/apache2/mods-available/rewrite.load dest=/etc/apache2/mods-enabled/rewrite.load state=link
+
+- name: write vhost file
+  template: src=apache.vhost dest=/etc/apache2/sites-available/default owner=root mode=0644
+  tags: config
+
+- name: write vhost file
+  template: src=apache.vhost dest=/etc/apache2/sites-available/000-default.conf owner=root mode=0644
+  tags: config
+
+# Restart service
+- name: restart apache
+  service: name=apache2 state=restarted
+  tags: config

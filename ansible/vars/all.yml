@@ -1,0 +1,33 @@
+---
+# Mysql settings
+mysql_host: 127.0.0.1
+mysql_data_dir: /db
+mysql_minor_version: 5
+mysql_db_name: ezpublish
+
+mysql_root_password: dev121
+mysql_root_password_hash: "*C9F89743F12AB5A9C673B11DB7C3EFE2ECF4B932"
+
+mysql_user: dev_team
+mysql_password: dev121
+mysql_password_hash: "*C9F89743F12AB5A9C673B11DB7C3EFE2ECF4B932"
+
+# eZ Publish settings
+var_folder: hootsuite
+storage_folder_target: /var/lib/ezpublish
+
+varnish_origin_host: 127.0.0.1
+varnish_port: 8080
+
+# Monitoring settings
+monitoring_host: localhost
+monitoring_port: 8125
+
+env: dev
+file_env: dev
+symfony_http_caching: 0
+
+prod_rewrite_rules: |
+  #RewriteRule ^/cms/css/.*\.css - [L]
+  #RewriteRule ^/cms/js/.*\.js - [L]
+  #RewriteRule ^/cms/images/.* - [L]
